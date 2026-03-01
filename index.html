@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ismihan Uddin — Physician-Scientist & Advocate</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf7f2;
+    --warm-white: #f5f0e8;
+    --terracotta: #c4614a;
+    --terracotta-light: #d9836e;
+    --deep: #1c1410;
+    --brown: #3d2b1f;
+    --mid: #7a5c4e;
+    --light-brown: #b89a8a;
+    --gold: #c8963e;
+    --sage: #7a8c6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--deep);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* --- NOISE TEXTURE OVERLAY --- */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* --- NAVIGATION --- */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 24px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250, 247, 242, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196, 97, 74, 0.12);
+    transition: padding 0.3s ease;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--brown);
+    cursor: pointer;
+  }
+
+  .nav-logo span {
+    color: var(--terracotta);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    transition: color 0.2s ease;
+    position: relative;
+    padding-bottom: 2px;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--terracotta);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--terracotta); }
+  .nav-links a:hover::after,
+  .nav-links a.active::after { width: 100%; }
+  .nav-links a.active { color: var(--terracotta); }
+
+  /* --- SECTIONS --- */
+  section {
+    display: none;
+    min-height: 100vh;
+    padding-top: 100px;
+    animation: fadeIn 0.5s ease;
+  }
+  section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* --- HOME --- */
+  #home {
+    display: none;
+    position: relative;
+    overflow: hidden;
+  }
+  #home.active { display: flex; flex-direction: column; }
+
+  .hero {
+    min-height: 100vh;
+    padding-top: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .hero-left {
+    padding: 80px 60px 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--brown);
+    margin-bottom: 8px;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--mid);
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+
+  .hero-desc {
+    font-size: 0.92rem;
+    line-height: 1.85;
+    color: var(--mid);
+    max-width: 420px;
+    margin-bottom: 48px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    padding: 14px 32px;
+    background: var(--terracotta);
+    color: white;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--brown);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--brown);
+    border: 1px solid var(--light-brown);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+    transform: translateY(-1px);
+  }
+
+  .hero-right {
+    position: relative;
+    background: var(--warm-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-graphic {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .circle-bg {
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, rgba(196,97,74,0.15), rgba(200,150,62,0.08) 60%, transparent 80%);
+    position: absolute;
+  }
+
+  .decorative-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-stats {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    padding: 60px;
+    width: 100%;
+  }
+
+  .stat-card {
+    background: rgba(250, 247, 242, 0.7);
+    backdrop-filter: blur(8px);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-3px);
+    background: rgba(250, 247, 242, 0.95);
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--terracotta);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .stat-card:hover::before { opacity: 1; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--terracotta);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mid);
+    font-weight: 400;
+  }
+
+  /* --- PILLARS --- */
+  .pillars {
+    background: var(--brown);
+    padding: 80px 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background-color: rgba(196,97,74,0.2);
+  }
+
+  .pillar {
+    background: var(--brown);
+    padding: 48px 40px;
+    transition: background 0.3s ease;
+    cursor: default;
+  }
+
+  .pillar:hover { background: #2d1e15; }
+
+  .pillar-icon {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  .pillar-text {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--light-brown);
+  }
+
+  /* --- ABOUT --- */
+  #about {
+    display: none;
+  }
+  #about.active { display: block; }
+
+  .about-hero {
+    background: var(--warm-white);
+    padding: 80px 60px 60px;
+    border-bottom: 1px solid rgba(196, 97, 74, 0.12);
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    font-weight: 300;
+    color: var(--brown);
+    line-height: 1.1;
+    max-width: 600px;
+  }
+
+  .about-grid {
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1200px;
+  }
+
+  .about-text p {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: var(--mid);
+    margin-bottom: 20px;
+  }
+
+  .about-text p strong {
+    color: var(--brown);
+    font-weight: 500;
+  }
+
+  .about-sidebar {
+    padding-top: 8px;
+  }
+
+  .sidebar-block {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(196, 97, 74, 0.12);
+  }
+  .sidebar-block:last-child { border-bottom: none; }
+
+  .sidebar-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    padding: 6px 14px;
+    background: var(--warm-white);
+    border: 1px solid rgba(122, 92, 78, 0.2);
+    font-size: 0.75rem;
+    color: var(--mid);
+    letter-spacing: 0.04em;
+    transition: all 0.2s ease;
+  }
+
+  .tag:hover {
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+  }
+
+  .edu-item {
+    margin-bottom: 24px;
+  }
+
+  .edu-school {
+    font-weight: 500;
+    font-size: 0.88rem;
+    color: var(--brown);
+    margin-bottom: 2px;
+  }
+
+  .edu-degree {
+    font-size: 0.83rem;
+    color: var(--mid);
+    margin-bottom: 2px;
+    font-style: italic;
+  }
+
+  .edu-year {
+    font-size: 0.75rem;
+    color: var(--light-brown);
+    letter-spacing: 0.05em;
+  }
+
+  /* --- EXPERIENCE --- */
+  #experience.active { display: block; }
+
+  .exp-header {
+    background: var(--warm-white);
+    padding: 80px 60px 60px;
+    border-bottom: 1px solid rgba(196, 97, 74, 0.12);
+  }
+
+  .timeline-container {
+    padding: 60px;
+    max-width: 900px;
+  }
+
+  .timeline-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--brown);
+    margin-bottom: 36px;
+    margin-top: 48px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(196, 97, 74, 0.2);
+  }
+
+  .timeline-section-title:first-child { margin-top: 0; }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 190px;
+    top: 10px;
+    bottom: -40px;
+    width: 1px;
+    background: rgba(196, 97, 74, 0.15);
+  }
+
+  .timeline-item:last-child::before { display: none; }
+
+  .timeline-date {
+    font-size: 0.75rem;
+    color: var(--light-brown);
+    letter-spacing: 0.05em;
+    text-align: right;
+    padding-top: 4px;
+    font-weight: 400;
+  }
+
+  .timeline-content {
+    padding-left: 32px;
+    position: relative;
+  }
+
+  .timeline-content::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--terracotta);
+  }
+
+  .timeline-role {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--brown);
+    margin-bottom: 2px;
+  }
+
+  .timeline-org {
+    font-size: 0.83rem;
+    color: var(--terracotta);
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  .timeline-desc {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--mid);
+  }
+
+  /* --- RESEARCH --- */
+  #research.active { display: block; }
+
+  .research-header {
+    background: var(--warm-white);
+    padding: 80px 60px 60px;
+    border-bottom: 1px solid rgba(196, 97, 74, 0.12);
+  }
+
+  .research-body {
+    padding: 60px;
+  }
+
+  .pub-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--brown);
+    margin-bottom: 28px;
+    margin-top: 48px;
+  }
+  .pub-section-title:first-child { margin-top: 0; }
+
+  .pub-grid {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .pub-card {
+    padding: 28px 32px;
+    background: var(--warm-white);
+    border-left: 3px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .pub-card:hover {
+    border-left-color: var(--terracotta);
+    transform: translateX(4px);
+  }
+
+  .pub-title {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--brown);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .pub-meta {
+    font-size: 0.8rem;
+    color: var(--mid);
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+
+  .pub-link {
+    font-size: 0.75rem;
+    color: var(--terracotta);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .pub-link:hover { color: var(--brown); }
+
+  .pub-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    background: rgba(196, 97, 74, 0.1);
+    color: var(--terracotta);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  .research-lab {
+    padding: 28px 32px;
+    background: var(--warm-white);
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 20px;
+  }
+
+  .research-lab:hover {
+    background: white;
+    transform: translateX(4px);
+    border-left: 3px solid var(--terracotta);
+  }
+
+  .lab-pi {
+    font-weight: 500;
+    font-size: 0.88rem;
+    color: var(--brown);
+    margin-bottom: 4px;
+  }
+
+  .lab-inst {
+    font-size: 0.8rem;
+    color: var(--terracotta);
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+
+  .lab-desc {
+    font-size: 0.82rem;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+
+  .lab-year {
+    font-size: 0.75rem;
+    color: var(--light-brown);
+    white-space: nowrap;
+  }
+
+  /* --- AWARDS --- */
+  #awards.active { display: block; }
+
+  .awards-header {
+    background: var(--warm-white);
+    padding: 80px 60px 60px;
+    border-bottom: 1px solid rgba(196, 97, 74, 0.12);
+  }
+
+  .awards-body {
+    padding: 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 16px;
+  }
+
+  .award-card {
+    padding: 32px 28px;
+    background: var(--warm-white);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .award-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--terracotta), var(--gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .award-card:hover { transform: translateY(-4px); }
+  .award-card:hover::after { transform: scaleX(1); }
+
+  .award-year {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+
+  .award-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--brown);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .award-desc {
+    font-size: 0.82rem;
+    line-height: 1.75;
+    color: var(--mid);
+  }
+
+  /* --- CONTACT --- */
+  #contact.active { display: block; }
+
+  .contact-wrap {
+    min-height: calc(100vh - 80px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-left {
+    background: var(--brown);
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .contact-left .section-label { color: var(--light-brown); }
+  .contact-left .section-title { color: var(--cream); max-width: 400px; }
+
+  .contact-tagline {
+    font-size: 0.92rem;
+    line-height: 1.85;
+    color: var(--light-brown);
+    margin-top: 24px;
+    max-width: 380px;
+  }
+
+  .contact-links {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-link-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color 0.2s ease;
+  }
+
+  .contact-link-item:hover { color: var(--terracotta-light); }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+  }
+
+  .contact-link-item:hover .contact-icon {
+    background: rgba(196, 97, 74, 0.3);
+  }
+
+  .contact-right {
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--cream);
+  }
+
+  .contact-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--brown);
+    margin-bottom: 32px;
+    line-height: 1.4;
+  }
+
+  .contact-blurb {
+    font-size: 0.88rem;
+    line-height: 1.85;
+    color: var(--mid);
+    margin-bottom: 40px;
+  }
+
+  .quick-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .quick-link {
+    padding: 18px 24px;
+    background: var(--warm-white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--brown);
+    font-size: 0.85rem;
+    font-weight: 400;
+    border: 1px solid transparent;
+  }
+
+  .quick-link:hover {
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+    transform: translateX(4px);
+  }
+
+  .quick-link span { font-size: 1rem; }
+
+  /* --- FOOTER --- */
+  footer {
+    background: var(--deep);
+    padding: 32px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--light-brown);
+  }
+
+  .footer-note {
+    font-size: 0.72rem;
+    color: var(--mid);
+    letter-spacing: 0.05em;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 40px 24px; }
+    .pillars { grid-template-columns: 1fr; }
+    .about-grid, .contact-wrap { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 1fr; gap: 4px; }
+    .timeline-item::before { display: none; }
+    .timeline-date { text-align: left; }
+    .timeline-content { padding-left: 24px; }
+    .about-hero, .exp-header, .research-header, .awards-header { padding: 60px 24px 40px; }
+    .timeline-container, .research-body, .awards-body, .contact-left, .contact-right { padding: 40px 24px; }
+    .awards-body { grid-template-columns: 1fr; }
+    footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+    .nav-links { gap: 20px; }
+    .nav-links a { font-size: 0.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showSection('home')">Ismihan <span>Uddin</span></div>
+  <ul class="nav-links">
+    <li><a href="#" class="active" onclick="showSection('home', this)">Home</a></li>
+    <li><a href="#" onclick="showSection('about', this)">About</a></li>
+    <li><a href="#" onclick="showSection('experience', this)">Experience</a></li>
+    <li><a href="#" onclick="showSection('research', this)">Research</a></li>
+    <li><a href="#" onclick="showSection('awards', this)">Awards</a></li>
+    <li><a href="#" onclick="showSection('contact', this)">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- --------------- HOME --------------- -->
+<section id="home" class="active">
+  <div class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Physician-Scientist · Founder · Humanitarian</p>
+      <h1 class="hero-name">Ismihan<br><em>Uddin</em></h1>
+      <p class="hero-title">DO Candidate, M3 · Chicago College of Osteopathic Medicine</p>
+      <p class="hero-desc">
+        Dedicated to building bridges between medicine, research, and community. From founding a mobile medical clinic for Chicago's unhoused to studying calcium signaling and cancer biology, my work lives at the intersection of science, equity, and service.
+      </p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="showSection('about', null)">About Me</button>
+        <button class="btn-outline" onclick="showSection('research', null)">View Research</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-graphic">
+        <div class="circle-bg"></div>
+        <svg class="decorative-line" viewBox="0 0 500 600" fill="none">
+          <path d="M50 300 Q200 100 450 200" stroke="rgba(196,97,74,0.12)" stroke-width="1"/>
+          <path d="M50 350 Q200 150 450 250" stroke="rgba(196,97,74,0.08)" stroke-width="1"/>
+          <circle cx="380" cy="140" r="60" stroke="rgba(200,150,62,0.12)" stroke-width="1"/>
+          <circle cx="380" cy="140" r="100" stroke="rgba(200,150,62,0.07)" stroke-width="1"/>
+          <line x1="100" y1="500" x2="400" y2="100" stroke="rgba(122,92,78,0.08)" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-num">8+</div>
+          <div class="stat-label">Publications & Manuscripts</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Research Labs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3.95</div>
+          <div class="stat-label">Undergrad GPA, Summa Cum Laude</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">Chi-Care</div>
+          <div class="stat-label">Mobile Medical Clinic, Founder</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-icon">??</div>
+      <div class="pillar-title">Scientific Rigor</div>
+      <p class="pillar-text">From cancer biophysics to neurobehavioral research, my work spans molecular mechanisms to community-level health outcomes, always grounded in evidence and driven by impact.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">??</div>
+      <div class="pillar-title">Clinical Service</div>
+      <p class="pillar-text">As a certified medical assistant and founder of Chi-Care Mobile Medical Services, I believe healthcare is a right — and I show up wherever it's needed most.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">??</div>
+      <div class="pillar-title">Global Advocacy</div>
+      <p class="pillar-text">From Sarajevo to Chicago, I bridge communities through humanitarian work, policy advocacy, and health equity research that centers those most often left behind.</p>
+    </div>
+  </div>
+</section>
+
+<!-- --------------- ABOUT --------------- -->
+<section id="about">
+  <div class="about-hero">
+    <p class="section-label">Who I Am</p>
+    <h2 class="section-title">Medicine as a calling,<br><em style="font-style:italic; color:var(--terracotta)">not just a career.</em></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a third-year medical student at the <strong>Chicago College of Osteopathic Medicine</strong> (anticipated graduation May 2027), where I'm training to become a physician-scientist committed to health equity, community care, and translational research.</p>
+      <p>My path into medicine was shaped by an early recognition that the most pressing health challenges aren't only biological — they're social, structural, and deeply human. That realization led me to found <strong>Chi-Care Mobile Medical Services</strong>, a student-run organization providing free primary care and health navigation to Chicago's unhoused populations.</p>
+      <p>Before medical school, I graduated <strong>Summa Cum Laude</strong> from the University of Illinois at Chicago with a B.S. in Biochemistry and a minor in Sociology — a pairing that captures my dual commitment to scientific depth and social context.</p>
+      <p>Outside the clinic and lab, I serve as a <strong>Schweitzer Fellow</strong>, a TA for physiology and medical coursework, a humanitarian volunteer in Bosnia and Herzegovina, and an advocate for osteopathic medicine at the national level. My work is guided by a belief that healing requires presence — in the community, in the policy room, and at the bedside.</p>
+    </div>
+    <div class="about-sidebar">
+      <div class="sidebar-block">
+        <p class="sidebar-title">Education</p>
+        <div class="edu-item">
+          <p class="edu-school">Midwestern University CCOM</p>
+          <p class="edu-degree">Doctorate of Osteopathic Medicine</p>
+          <p class="edu-year">August 2023 — May 2027 (anticipated)</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-school">University of Illinois at Chicago</p>
+          <p class="edu-degree">B.S. Biochemistry · Minor in Sociology · Summa Cum Laude</p>
+          <p class="edu-year">August 2020 — May 2023 · GPA 3.95</p>
+        </div>
+      </div>
+      <div class="sidebar-block">
+        <p class="sidebar-title">Areas of Interest</p>
+        <div class="tag-list">
+          <span class="tag">Health Equity</span>
+          <span class="tag">Homeless Medicine</span>
+          <span class="tag">Cancer Biology</span>
+          <span class="tag">Cardiology</span>
+          <span class="tag">Neuroscience</span>
+          <span class="tag">Trauma-Informed Care</span>
+          <span class="tag">Global Health</span>
+          <span class="tag">Medical Education</span>
+          <span class="tag">Health Policy</span>
+          <span class="tag">Mental Health Equity</span>
+        </div>
+      </div>
+      <div class="sidebar-block">
+        <p class="sidebar-title">Contact</p>
+        <p style="font-size:0.85rem; color:var(--mid);">ismihanauddin@gmail.com</p>
+        <p style="font-size:0.85rem; color:var(--mid); margin-top:4px;">(847) 344-9962</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------- EXPERIENCE --------------- -->
+<section id="experience">
+  <div class="exp-header">
+    <p class="section-label">Work & Service</p>
+    <h2 class="section-title">A career built on<br><em style="font-style:italic; color:var(--terracotta)">presence and purpose.</em></h2>
+  </div>
+  <div class="timeline-container">
+
+    <p class="timeline-section-title">Clinical & Professional</p>
+
+    <div class="timeline-item">
+      <div class="timeline-date">March 2024 — Present</div>
+      <div class="timeline-content">
+        <p class="timeline-role">Founder & Board Member</p>
+        <p class="timeline-org">Chi-Care Mobile Medical Services · Chicago, IL</p>
+        <p class="timeline-desc">Founded and lead a student-run mobile medical outreach organization delivering primary care, preventive services, and health navigation to underserved communities. Conduct community-engaged research on cancer screening disparities.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">May 2024 — Present</div>
+      <div class="timeline-content">
+        <p class="timeline-role">Teaching Assistant</p>
+        <p class="timeline-org">Midwestern University · Downers Grove, IL</p>
+        <p class="timeline-desc">Support medical education through small-group facilitation, tutoring, and academic mentorship while assisting faculty with instructional activities, assessments, and review sessions in physiology and foundational science.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">June 2021 — Present</div>
+      <div class="timeline-content">
+        <p class="timeline-role">Certified Medical Assistant</p>
+        <p class="timeline-org">Northwestern Medicine · St. Charles, IL</p>
+        <p class="timeline-desc">Deliver direct patient care including rooming, vitals, phlebotomy, EKGs, documentation, and physician support during procedures in a high-volume clinical setting.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Aug 2020 — May 2023</div>
+      <div class="timeline-content">
+        <p class="timeline-role">Science and Math Tutor</p>
+        <p class="timeline-org">Math & Science Learning Center · Chicago, IL</p>
+        <p class="timeline-desc">Provided individualized instruction in science and mathematics, helping students strengthen foundational knowledge and academic performance.</p>
+      </div>
+    </div>
+
+    <p class="timeline-section-title">Volunteer & Humanitarian</p>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Sep 2025 — Present</div>
+      <div class="timeline-content">
+        <p class="timeline-role">Board Member</p>
+        <p class="timeline-org">From USA to BiH</p>
+        <p class="timeline-desc">Support humanitarian outreach with food and essential supply distribution to underserved families in Chicago and Sarajevo, Bosnia and Herzegovina. Helped organize the organization's annual conference fundraiser.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Mar 2024 — Sep 2025</div>
+      <div class="timeline-content">
+        <p class="timeline-role">Schweitzer Fellow</p>
+        <p class="timeline-org">Chicago Area Schweitzer Fellows Program</p>
+        <p class="timeline-desc">Selected to design and implement a community-based project advancing health equity and mental wellness among underserved populations. Developed culturally responsive mental health education integrated into preventive health initiatives.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">May–July 2024, 2025</div>
+      <div class="timeline-content">
+        <p class="timeline-role">Medical Volunteer</p>
+        <p class="timeline-org">Red Cross · Sarajevo, Bosnia and Herzegovina</p>
+        <p class="timeline-desc">Assisted with health promotion, first aid, and community outreach for local and refugee populations impacted by socioeconomic hardship and conflict. Deepened understanding of trauma-informed and culturally sensitive care.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Sep 2022 — Present</div>
+      <div class="timeline-content">
+        <p class="timeline-role">First Grade Teacher & Medical Assistant</p>
+        <p class="timeline-org">AMCO Sunday School & Free Clinic</p>
+        <p class="timeline-desc">Teach and mentor first-grade students while providing free preventive health screenings, medical evaluations, and patient education for underserved and uninsured patients partnering with ICNA Medical Relief.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- --------------- RESEARCH --------------- -->
+<section id="research">
+  <div class="research-header">
+    <p class="section-label">Science & Scholarship</p>
+    <h2 class="section-title">Research that bridges<br><em style="font-style:italic; color:var(--terracotta)">bench to bedside to community.</em></h2>
+  </div>
+  <div class="research-body">
+
+    <p class="pub-section-title">Publications</p>
+    <div class="pub-grid">
+
+      <div class="pub-card">
+        <p class="pub-title">Cultural Determinants of Chronic Disease Management: A Cross-Comparative Medical Review</p>
+        <p class="pub-meta">Uddin, I., Siddiqui R. — Sciety, 2025</p>
+        <a class="pub-link" href="https://labs.sciety.org/articles/by?article_doi=10.20944/preprints202512.1968.v1" target="_blank">View Publication ?</a>
+      </div>
+
+      <div class="pub-card">
+        <p class="pub-title">Metabolically active but dysfunctional: The role of senescence and SASP in metabolic diseases</p>
+        <p class="pub-meta">Viniak S., Shah P.V., Uddin I.A., Xu K., Khan M.W. — Preprints.org, 2025</p>
+        <a class="pub-link" href="https://doi.org/10.20944/preprints202507.1550.v1" target="_blank">View Publication ?</a>
+      </div>
+
+      <div class="pub-card">
+        <p class="pub-title">Redefining Homelessness Healthcare: Hospitals Must Lead, Not Follow</p>
+        <p class="pub-meta">Uddin, Ismihan — Op-Ed, HMPRG, July 2025</p>
+        <a class="pub-link" href="https://www.hmprg.org/wp-content/uploads/2025/08/2025-07-31_Ismihan-Uddin-Op-Ed.pdf" target="_blank">View Op-Ed ?</a>
+      </div>
+
+      <div class="pub-card">
+        <p class="pub-title">Ionization Patterns and Chemical Reactivity of Cytosine-Guanine Watson-Crick Pairs</p>
+        <p class="pub-meta">Uddin I.A., Stec E., Papadantonakis G.A. — ChemPhysChem, Wiley, 2024</p>
+        <a class="pub-link" href="https://doi.org/10.1002/cphc.202300946" target="_blank">View Publication ?</a>
+      </div>
+
+      <div class="pub-card">
+        <p class="pub-title">Cutaneous Squamous Cell Carcinoma</p>
+        <p class="pub-meta">Suhling M., Thompson T., Uddin I.A. — Geriatric Dermatology, Springer, 2024</p>
+        <a class="pub-link" href="https://doi.org/10.1007/978-3-031-53888-9_80-1" target="_blank">View Chapter ?</a>
+      </div>
+
+    </div>
+
+    <p class="pub-section-title">Manuscripts in Preparation</p>
+    <div class="pub-grid">
+
+      <div class="pub-card">
+        <p class="pub-title">Community-based cancer screening access among people experiencing homelessness in Chicago</p>
+        <p class="pub-meta">Uddin I., Mohiuddin M., et al.</p>
+        <span class="pub-badge">In Preparation</span>
+      </div>
+
+      <div class="pub-card">
+        <p class="pub-title">Patient-reported outcomes following upper extremity trauma in urban populations</p>
+        <p class="pub-meta">Uddin I., Strelzow J., Wolf J., et al.</p>
+        <span class="pub-badge">In Preparation</span>
+      </div>
+
+      <div class="pub-card">
+        <p class="pub-title">Calcium signaling via ryanodine and inositol trisphosphate receptors in excitable cells</p>
+        <p class="pub-meta">Uddin I., Mejia-Alvarez J., et al.</p>
+        <span class="pub-badge">In Preparation</span>
+      </div>
+
+    </div>
+
+    <p class="pub-section-title">Research Groups</p>
+
+    <div class="research-lab">
+      <div>
+        <p class="lab-pi">Dr. Majid Mohiuddin — Chi-Care Medical</p>
+        <p class="lab-inst">Community-Based Research · October 2025–Present</p>
+        <p class="lab-desc">Cancer screening and treatment access among people experiencing homelessness in the Chicagoland area, with interventions delivered via the Chi-Care Mobile Medical Van.</p>
+      </div>
+      <div class="lab-year">2025–Present</div>
+    </div>
+
+    <div class="research-lab">
+      <div>
+        <p class="lab-pi">Dr. Jason Strelzow & Dr. Jennifer Wolf — University of Chicago</p>
+        <p class="lab-inst">Upper Extremity & Trauma Lab · May 2024–Present</p>
+        <p class="lab-desc">Patient-reported outcomes following upper extremity trauma, examining relationships between urban injury, PTSD, and recovery to inform trauma-informed care.</p>
+      </div>
+      <div class="lab-year">2024–Present</div>
+    </div>
+
+    <div class="research-lab">
+      <div>
+        <p class="lab-pi">Dr. Mejia-Alvarez Lab — Midwestern University</p>
+        <p class="lab-inst">Cardiac Physiology · March 2024–Present</p>
+        <p class="lab-desc">Calcium signaling in excitable cells focusing on ryanodine and inositol trisphosphate receptors to elucidate mechanisms underlying stress physiology and cardiac dysfunction.</p>
+      </div>
+      <div class="lab-year">2024–Present</div>
+    </div>
+
+    <div class="research-lab">
+      <div>
+        <p class="lab-pi">Dr. Terranova Lab — Midwestern University</p>
+        <p class="lab-inst">Neurobehavioral Research · February 2024–Present</p>
+        <p class="lab-desc">Neurobehavioral research using immunohistochemistry, DREADDs, optogenetics, in vivo calcium imaging, and activity-dependent cell labeling to investigate neural circuitry and rodent social behavior.</p>
+      </div>
+      <div class="lab-year">2024–Present</div>
+    </div>
+
+    <div class="research-lab">
+      <div>
+        <p class="lab-pi">Dr. Khan Lab — UIC College of Medicine, Endocrinology</p>
+        <p class="lab-inst">Cancer Biology · August 2020–May 2023</p>
+        <p class="lab-desc">Metabolic pathways in liver cancer and protein regulation in tumor progression, contributing to translational research on systemic illness and stress-related disease.</p>
+      </div>
+      <div class="lab-year">2020–2023</div>
+    </div>
+
+    <div class="research-lab">
+      <div>
+        <p class="lab-pi">Dr. Papadantonakis Cancer Biophysics Lab — UIC Chemistry</p>
+        <p class="lab-inst">Cancer Biophysics · August 2021–May 2023</p>
+        <p class="lab-desc">Mechanisms of DNA ionization and mutagenesis to better understand cellular stress responses, carcinogenesis, and biological effects of environmental exposure.</p>
+      </div>
+      <div class="lab-year">2021–2023</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- --------------- AWARDS --------------- -->
+<section id="awards">
+  <div class="awards-header">
+    <p class="section-label">Recognition</p>
+    <h2 class="section-title">Honored for work that<br><em style="font-style:italic; color:var(--terracotta)">matters beyond the walls.</em></h2>
+  </div>
+  <div class="awards-body">
+
+    <div class="award-card">
+      <p class="award-year">December 2025</p>
+      <p class="award-name">CCOM Global Scholar of the Year</p>
+      <p class="award-desc">Recognizes exceptional dedication, leadership, and impact in global health at the Chicago College of Osteopathic Medicine.</p>
+    </div>
+
+    <div class="award-card">
+      <p class="award-year">October 2025</p>
+      <p class="award-name">Chicago Health & Medicine Policy Research Group Seed Grant</p>
+      <p class="award-desc">Selected for funding to support community health research integrating policy and behavioral health interventions.</p>
+    </div>
+
+    <div class="award-card">
+      <p class="award-year">March 2025</p>
+      <p class="award-name">IL Association of Free & Charitable Clinics Outstanding Achievement Nominee</p>
+      <p class="award-desc">Recognized for leadership and service through Chi-Care Med, a mobile clinic providing free healthcare to underserved populations.</p>
+    </div>
+
+    <div class="award-card">
+      <p class="award-year">September 2024</p>
+      <p class="award-name">Omega Beta Iota National Health Policy Honors Society</p>
+      <p class="award-desc">Inducted for academic excellence and commitment to leadership and advocacy in health policy and medicine.</p>
+    </div>
+
+    <div class="award-card">
+      <p class="award-year">May 2024</p>
+      <p class="award-name">Chicago Area Schweitzer Fellowship</p>
+      <p class="award-desc">Selected for a year-long service fellowship addressing health inequities through a community-based mental health initiative.</p>
+    </div>
+
+    <div class="award-card">
+      <p class="award-year">May 2023</p>
+      <p class="award-name">Edward G. Rietz Biochemistry Award</p>
+      <p class="award-desc">Awarded annually to one outstanding senior in UIC's Chemistry Department for excellence in academic and research performance.</p>
+    </div>
+
+    <div class="award-card">
+      <p class="award-year">January 2022</p>
+      <p class="award-name">UIC College of Medicine Gold Medal Honors Award</p>
+      <p class="award-desc">First place at the UIC College of Medicine Research Forum for research on HKDC1 protein stability in hepatocellular carcinoma.</p>
+    </div>
+
+    <div class="award-card">
+      <p class="award-year">May 2022</p>
+      <p class="award-name">UIC Herbert E. Paaren Scholarship Award</p>
+      <p class="award-desc">Granted for academic excellence and research promise within the College of Liberal Arts and Sciences.</p>
+    </div>
+
+    <div class="award-card">
+      <p class="award-year">May 2022</p>
+      <p class="award-name">UIC LASURI Research Scholarship Award</p>
+      <p class="award-desc">Competitive funding to conduct undergraduate research through the Liberal Arts and Sciences Undergraduate Research Initiative.</p>
+    </div>
+
+    <div class="award-card">
+      <p class="award-year">May 2020–2023</p>
+      <p class="award-name">UIC Honors College Scholarship Award</p>
+      <p class="award-desc">Awarded for sustained academic achievement and active participation in Honors College programming.</p>
+    </div>
+
+    <div class="award-card">
+      <p class="award-year">March 2021</p>
+      <p class="award-name">Cognella Cares Scholarship Award</p>
+      <p class="award-desc">Selected nationally for academic merit, resilience, and dedication to improving community health and education.</p>
+    </div>
+
+    <div class="award-card">
+      <p class="award-year">August 2020</p>
+      <p class="award-name">National Honors Society Scholarship Award</p>
+      <p class="award-desc">Awarded for exceptional academic performance, leadership, and service at the national level.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- --------------- CONTACT --------------- -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-left">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Let's build<br>something meaningful.</h2>
+      <p class="contact-tagline">Whether you're interested in research collaboration, community partnership, medical mentorship, or speaking opportunities — I'd love to connect.</p>
+      <div class="contact-links">
+        <a class="contact-link-item" href="mailto:ismihanauddin@gmail.com">
+          <div class="contact-icon">?</div>
+          ismihanauddin@gmail.com
+        </a>
+        <a class="contact-link-item" href="tel:8473449962">
+          <div class="contact-icon">??</div>
+          (847) 344-9962
+        </a>
+        <a class="contact-link-item" href="https://www.hmprg.org/wp-content/uploads/2025/08/2025-07-31_Ismihan-Uddin-Op-Ed.pdf" target="_blank">
+          <div class="contact-icon">??</div>
+          Published Op-Ed — HMPRG
+        </a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <p class="contact-intro">"Healthcare is not a privilege — it is a presence."</p>
+      <p class="contact-blurb">I'm always open to conversations about health equity, community medicine, research partnerships, and what it means to show up for patients who are most often overlooked. If any of my work resonates with you, please reach out.</p>
+      <div class="quick-links">
+        <div class="quick-link" onclick="showSection('research', null)">
+          View Research & Publications <span>?</span>
+        </div>
+        <div class="quick-link" onclick="showSection('experience', null)">
+          Explore Clinical Experience <span>?</span>
+        </div>
+        <div class="quick-link" onclick="showSection('awards', null)">
+          See Awards & Honors <span>?</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Ismihan Uddin, DO Candidate</div>
+  <div class="footer-note">Chicago College of Osteopathic Medicine · Class of 2027</div>
+</footer>
+
+<script>
+  function showSection(id, navEl) {
+    // hide all sections
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+
+    // update nav links
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    if (navEl) {
+      navEl.classList.add('active');
+    } else {
+      // find by matching text
+      const map = { home: 'Home', about: 'About', experience: 'Experience', research: 'Research', awards: 'Awards', contact: 'Contact' };
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        if (a.textContent.trim() === map[id]) a.classList.add('active');
+      });
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return false;
+  }
+
+  // Prevent default on all nav links
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+    });
+  });
+</script>
+
+</body>
+</html>
